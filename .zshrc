@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/aandrukhovich/.oh-my-zsh"
+# export ZSH="/home/aandrukhovich/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -74,7 +74,7 @@ ZSH_THEME="sunrise"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -106,32 +106,44 @@ source $ZSH/oh-my-zsh.sh
 
 
 # PROMPT
-force_color_prompt=yes
-exitstatus()
-{
-    RETURN=$?
-    if [[ ${RETURN} == 0 ]]; then
-        echo ""
-    else
-        echo "\$${RETURN} "
-    fi
-}
+# force_color_prompt=yes
+# exitstatus()
+# {
+#     RETURN=$?
+#     if [[ ${RETURN} == 0 ]]; then
+#         echo ""
+#     else
+#         echo "\$${RETURN} "
+#     fi
+# }
+#
+autoload -U colors && colors
+setopt promptsubst
 
 start_gray_background='%K{254}'
 end_background='%k'
-exitstatus_ps1='%K{red}%F{black}$(exitstatus)%f%k'
+# exitstatus_ps1='%F{red}%F{black}$(echo $?)%f%k'
+exitstatus_ps1='%{$fg_bold[red]%}%(?..%? )%{$reset_color%}'
 time_date_ps1='%B%F{green}%D{%H:%M:%S %d-%m-%y}'
 dir_ps1='%U%F{blue}`pwd`%E%k%u'
 end_ps1='%F{cyan}> %b%f'
 newline=$'\n'
 export PROMPT="$exitstatus_ps1$start_gray_background$time_date_ps1 $dir_ps1$end_background${newline}$end_ps1"
 
+# start_gray_background='%K{254}'
+# end_background='%k'
+# exitstatus_ps1='%K{red}%F{black}$(exitstatus)%f%k'
+# time_date_ps1='%B%F{green}%D{%H:%M:%S %d-%m-%y}'
+# dir_ps1='%U%F{blue}`pwd`%E%k%u'
+# end_ps1='%F{cyan}> %b%f'
+# newline=$'\n'
+# export PROMPT="$exitstatus_ps1$start_gray_background$time_date_ps1 $dir_ps1$end_background${newline}$end_ps1"
+
 
 # Auto run fzf
 source ~/.fzf.zsh
 
 # python
-alias p='ipython2'
 alias p3='ipython3'
 alias pylint='pylint --max-line-length=100'
 alias pylint3='/home/aandrukhovich/snap/pylint3 --max-line-length=100'
@@ -147,9 +159,6 @@ export PATH="$PATH:~/.vim/compiler"
 
 # Ubuntu alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Amazing slackify by kolesov93
-alias slackify='~/libs/slackify'
 
 
 # colored GCC warnings and errors
@@ -192,6 +201,7 @@ autoload extendedglob
 
 
 # ls aliases
+alias ls='ls --color=auto'
 alias llsd='ls -ld *(-/DN)'
 alias lsd='ls -ld */'
 alias lt='l -tr'
@@ -222,9 +232,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 alias cb="cargo build"
 alias cr="cargo run"
 
-# Yandex part
 
-export YT_POOL=voice
-export YT_PROXY=hahn
-export YQL_TOKEN="AQAD-qJSJsASAAADvlzaYSQSwEiVmVwwSyIwOo4"
-
+# Vim-mode
+export KEYTIMEOUT=1
