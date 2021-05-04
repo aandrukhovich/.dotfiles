@@ -22,14 +22,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'zxqfl/tabnine-vim'
-Plugin 'nvie/vim-flake8'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'dense-analysis/ale'
+" Plugin 'zxqfl/tabnine-vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'itchyny/lightline.vim'
 Plugin 'itchyny/vim-cursorword'
 Plugin 'tpope/vim-commentary.git'
@@ -44,6 +44,9 @@ syntax on
 
 nnoremap Q @q
 
+set t_Co=256   " This is may or may not needed.
+
+set background=light
 colorscheme PaperColor
 " colorscheme monokai
 
@@ -99,6 +102,7 @@ call NERDTreeHighlightFile('sh', 'yellow', 'none', 'yellow', '#151515')
 nmap <C-]> : YcmCompleter GoTo<CR>
 nmap <Leader>d : YcmCompleter GetDoc<CR>
 nmap <Leader>g : YcmCompleter GoToReferences<CR>
+set completeopt-=preview
 
 let mapleader="\\"
 
@@ -175,7 +179,11 @@ imap <right> <nop>
 
 " Rust.vim
 let g:rustfmt_autosave = 1
-let g:ycm_rust_src_path = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
+" let g:ycm_rust_src_path = systemlist('rustc --print sysroot')[0] . '/lib/rustlib/src/rust/src'
 
 nmap <F9> :Crun<CR>
 nmap <F8> :Cbuild<CR>
+
+
+" copy-paste mode
+set pastetoggle=<F2>

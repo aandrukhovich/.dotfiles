@@ -144,9 +144,8 @@ export PROMPT="$exitstatus_ps1$start_gray_background$time_date_ps1 $dir_ps1$end_
 source ~/.fzf.zsh
 
 # python
+alias p='python3'
 alias p3='ipython3'
-alias pylint='pylint --max-line-length=100'
-alias pylint3='/home/aandrukhovich/snap/pylint3 --max-line-length=100'
 
 # tmux aliases
 alias ta='tmux a'
@@ -169,8 +168,9 @@ setopt AUTO_CD
 
 # Save timestamp, uet and elapsed time of command in .zsh_history
 # setopt EXTENDED_HISTORY
-SAVEHIST=50000
-HISTSIZE=20000
+SAVEHIST=10000
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
 # share history across multiple zsh sessions
 setopt SHARE_HISTORY
 # append to history
@@ -233,5 +233,30 @@ alias cb="cargo build"
 alias cr="cargo run"
 
 
+alias grep="grep --color=auto"
+
 # Vim-mode
 export KEYTIMEOUT=1
+
+# tmux share history
+setopt inc_append_history
+
+
+# copy file to clipboard
+alias cv="xclip -sel c <"
+
+# core temperature
+alias cput="watch -n 0.5 \"sensors | grep °C\""
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip3
+# pip zsh completion end
+
