@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible
 " set magic
 set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8
 filetype off                  " required
@@ -22,14 +22,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'dense-analysis/ale'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
 " Plugin 'zxqfl/tabnine-vim'
+" Plugin 'nvie/vim-flake8'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'itchyny/lightline.vim'
 Plugin 'itchyny/vim-cursorword'
 Plugin 'tpope/vim-commentary.git'
@@ -44,9 +45,6 @@ syntax on
 
 nnoremap Q @q
 
-set t_Co=256   " This is may or may not needed.
-
-set background=light
 colorscheme PaperColor
 " colorscheme monokai
 
@@ -65,9 +63,9 @@ augroup vimrc_autocmds
     \ set commentstring=//\ %s |
     \ set textwidth=80 colorcolumn=80 linebreak | 
 
-  autocmd FileType python
-    \ set textwidth=100 colorcolumn=100 linebreak | 
-    \ set commentstring=\#\ %s
+  " autocmd FileType python
+  "   \ set textwidth=100 colorcolumn=100 linebreak | 
+  "   \ set commentstring=\#\ %s
 
 augroup END
 "}}}
@@ -102,7 +100,6 @@ call NERDTreeHighlightFile('sh', 'yellow', 'none', 'yellow', '#151515')
 nmap <C-]> : YcmCompleter GoTo<CR>
 nmap <Leader>d : YcmCompleter GetDoc<CR>
 nmap <Leader>g : YcmCompleter GoToReferences<CR>
-set completeopt-=preview
 
 let mapleader="\\"
 
@@ -185,5 +182,4 @@ nmap <F9> :Crun<CR>
 nmap <F8> :Cbuild<CR>
 
 
-" copy-paste mode
 set pastetoggle=<F2>

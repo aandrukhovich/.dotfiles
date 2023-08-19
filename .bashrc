@@ -147,16 +147,16 @@ alias pylint='pylint --max-line-length=100'
 
 export PATH="$PATH:~/.vim/compiler"
 
-export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
-export YQL_TOKEN="AQAD-qJSJsASAAADvlzaYSQSwEiVmVwwSyIwOo4"
+# Nostalgia stuff
+export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH # I remember transfer from cuda 7.0 to 7.5 when the last was only published..
+export YQL_TOKEN="AQAD-qJSJsASAAADvlzaYSQSwEiVmVwwSyIwOo4" # robot-acoustic-team token, the one I've commited to umbrella during Ya internship :)
 export YT_POOL=voice
 export YT_PROXY=hahn
 alias cds5='cd ~/umbrella/kaldi/egs/yndx/s5'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"' # creds: @kolesov93
+alias ya='~/work/arcadia/ya'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias ya='~/work/arcadia/ya'
 
 alias lst='< ls -t | head -n 1'
 
